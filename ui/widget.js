@@ -28,7 +28,7 @@
 		if (!ses.ok()) {
 			return;
 		} else {
-			ses.scrubberFactory = factory;
+			ses.uiFactory = factory;
 		}
 
 	// <script>
