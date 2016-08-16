@@ -27,8 +27,21 @@
 			"../version",
 			"../keycode"
 		], factory );
-	} else {
 
+	// CommonJS
+	} else if (typeof exports === "object" && typeof module === "object") {
+		module.exports = factory;
+
+	// SES (Secure EcmaScript)
+	} else if (typeof ses !== "undefined") {
+		if (!ses.ok()) {
+			return;
+		} else {
+			ses.uiDatepickerFactory = factory;
+		}
+
+	// <script>
+	} else {
 		// Browser globals
 		factory( jQuery );
 	}
