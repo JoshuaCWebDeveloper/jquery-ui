@@ -20,7 +20,11 @@
 	} else if (typeof exports === "object" && typeof module === "object") {
         
         // CommonJS
-		module.exports = factory;
+		module.exports = function ($) {
+            var vf = require("./version");
+            vf($);
+            return factory($);
+        };
 	} else {
 
 		// Browser globals

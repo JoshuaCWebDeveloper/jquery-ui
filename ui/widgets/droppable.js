@@ -24,6 +24,14 @@
 			"../version",
 			"../widget"
 		], factory );
+	} else if (typeof exports === "object" && typeof module === "object") {
+        
+        // CommonJS
+		module.exports = function ($) {
+            var df = require("./draggable");
+            df($);
+            return factory($);
+        };
 	} else {
 
 		// Browser globals

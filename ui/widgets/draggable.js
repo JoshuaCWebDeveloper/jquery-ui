@@ -29,6 +29,23 @@
 			"../version",
 			"../widget"
 		], factory );
+	} else if (typeof exports === "object" && typeof module === "object") {
+        
+        // CommonJS
+		module.exports = function ($) {
+            var factories = {
+                mouse: require("./mouse"),
+                data: require("../data"),
+                plugin: require("../plugin"),
+                "safe-active-element": require("../safe-active-element"),
+                "safe-blur": require("../safe-blur"),
+                "scroll-parent": require("../scroll-parent")
+            };
+            for (var f in factories) {
+                factories[f]($);
+            }
+            return factory($);
+        };
 	} else {
 
 		// Browser globals

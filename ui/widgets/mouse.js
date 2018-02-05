@@ -22,6 +22,16 @@
 			"../version",
 			"../widget"
 		], factory );
+	} else if (typeof exports === "object" && typeof module === "object") {
+        
+        // CommonJS
+		module.exports = function ($) {
+            var ief = require("../ie"),
+                wf = require("../widget");
+            ief($);
+            wf($);
+            return factory($);
+        };
 	} else {
 
 		// Browser globals
