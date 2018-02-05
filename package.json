@@ -2,7 +2,7 @@
 	"name": "jquery-ui",
 	"title": "jQuery UI",
 	"description": "A curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library.",
-	"version": "1.12.1-pre",
+	"version": "1.12.2-pre",
 	"homepage": "http://jqueryui.com",
 	"author": {
 		"name": "jQuery Foundation and other contributors",
@@ -50,7 +50,9 @@
 	"scripts": {
 		"test": "grunt"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"jquery": ">=1.7.0 <4.0.0"
+	},
 	"devDependencies": {
 		"commitplease": "2.3.0",
 		"grunt": "0.4.5",

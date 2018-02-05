@@ -27,36 +27,15 @@
 	}
 }( function( $ ) {
 ( function() {
-var cachedScrollbarWidth, supportsOffsetFractions,
+var cachedScrollbarWidth,
 	max = Math.max,
 	abs = Math.abs,
-	round = Math.round,
 	rhorizontal = /left|center|right/,
 	rvertical = /top|center|bottom/,
 	roffset = /[\+\-]\d+(\.[\d]+)?%?/,
 	rposition = /^\w+/,
 	rpercent = /%$/,
 	_position = $.fn.position;
-
-// Support: IE <=9 only
-supportsOffsetFractions = function() {
-	var element = $( "<div>" )
-			.css( "position", "absolute" )
-			.appendTo( "body" )
-			.offset( {
-				top: 1.5,
-				left: 1.5
-			} ),
-		support = element.offset().top === 1.5;
-
-	element.remove();
-
-	supportsOffsetFractions = function() {
-		return support;
-	};
-
-	return support;
-};
 
 function getOffsets( offsets, width, height ) {
 	return [
@@ -105,9 +84,9 @@ $.position = {
 			return cachedScrollbarWidth;
 		}
 		var w1, w2,
-			div = $( "<div " +
-				"style='display:block;position:absolute;width:50px;height:50px;overflow:hidden;'>" +
-				"<div style='height:100px;width:auto;'></div></div>" ),
+			div = $( "<div style=" +
+				"'display:block;position:absolute;width:200px;height:200px;overflow:hidden;'>" +
+				"<div style='height:300px;width:auto;'></div></div>" ),
 			innerDiv = div.children()[ 0 ];
 
 		$( "body" ).append( div );
@@ -265,12 +244,6 @@ $.fn.position = function( options ) {
 
 		position.left += myOffset[ 0 ];
 		position.top += myOffset[ 1 ];
-
-		// If the browser doesn't support fractions, then round for consistent results
-		if ( !supportsOffsetFractions() ) {
-			position.left = round( position.left );
-			position.top = round( position.top );
-		}
 
 		collisionPosition = {
 			marginLeft: marginLeft,

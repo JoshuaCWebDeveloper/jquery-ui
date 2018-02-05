@@ -7,18 +7,18 @@ var
 	coreFiles = [
 		"core.js",
 		"widget.js",
-		"mouse.js",
-		"draggable.js",
-		"droppable.js",
-		"resizable.js",
-		"selectable.js",
-		"sortable.js",
+		"widgets/mouse.js",
+		"widgets/draggable.js",
+		"widgets/droppable.js",
+		"widgets/resizable.js",
+		"widgets/selectable.js",
+		"widgets/sortable.js",
 		"effect.js"
 	],
 
 	uiFiles = coreFiles.map(function( file ) {
 		return "ui/" + file;
-	}).concat( expandFiles( "ui/*.js" ).filter(function( file ) {
+	}).concat( expandFiles( "ui/**/*.js" ).filter(function( file ) {
 		return coreFiles.indexOf( file.substring( 3 ) ) === -1;
 	}) ),
 
@@ -392,7 +392,16 @@ grunt.initConfig({
 				"jquery-3.0.0/LICENSE.txt": "jquery-3.0.0/LICENSE.txt",
 
 				"jquery-3.1.0/jquery.js": "jquery-3.1.0/dist/jquery.js",
-				"jquery-3.1.0/LICENSE.txt": "jquery-3.1.0/LICENSE.txt"
+				"jquery-3.1.0/LICENSE.txt": "jquery-3.1.0/LICENSE.txt",
+
+				"jquery-3.1.1/jquery.js": "jquery-3.1.1/dist/jquery.js",
+				"jquery-3.1.1/LICENSE.txt": "jquery-3.1.1/LICENSE.txt",
+
+				"jquery-migrate-1.4.1/jquery-migrate.js": "jquery-migrate-1.4.1/dist/jquery-migrate.js",
+				"jquery-migrate-1.4.1/LICENSE.txt": "jquery-migrate-1.4.1/LICENSE.txt",
+
+				"jquery-migrate-3.0.0/jquery-migrate.js": "jquery-migrate-3.0.0/dist/jquery-migrate.js",
+				"jquery-migrate-3.0.0/LICENSE.txt": "jquery-migrate-3.0.0/LICENSE.txt"
 			}
 		}
 	},

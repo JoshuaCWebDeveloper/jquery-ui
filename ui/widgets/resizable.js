@@ -187,15 +187,14 @@ $.widget( "ui.resizable", $.ui.mouse, {
 	_destroy: function() {
 
 		this._mouseDestroy();
+		this._addedHandles.remove();
 
 		var wrapper,
 			_destroy = function( exp ) {
 				$( exp )
 					.removeData( "resizable" )
 					.removeData( "ui-resizable" )
-					.off( ".resizable" )
-					.find( ".ui-resizable-handle" )
-						.remove();
+					.off( ".resizable" );
 			};
 
 		// TODO: Unwrap at same DOM position
@@ -226,6 +225,9 @@ $.widget( "ui.resizable", $.ui.mouse, {
 			this._removeHandles();
 			this._setupHandles();
 			break;
+		case "aspectRatio":
+			this._aspectRatio = !!value;
+			break;
 		default:
 			break;
 		}
@@ -247,6 +249,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 				} );
 
 		this._handles = $();
+		this._addedHandles = $();
 		if ( this.handles.constructor === String ) {
 
 			if ( this.handles === "all" ) {
@@ -266,7 +269,10 @@ $.widget( "ui.resizable", $.ui.mouse, {
 				axis.css( { zIndex: o.zIndex } );
 
 				this.handles[ handle ] = ".ui-resizable-" + handle;
-				this.element.append( axis );
+				if ( !this.element.children( this.handles[ handle ] ).length ) {
+					this.element.append( axis );
+					this._addedHandles = this._addedHandles.add( axis );
+				}
 			}
 
 		}
@@ -332,7 +338,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 	},
 
 	_removeHandles: function() {
-		this._handles.remove();
+		this._addedHandles.remove();
 	},
 
 	_mouseCapture: function( event ) {

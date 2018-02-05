@@ -4,7 +4,7 @@ module.exports = function( grunt ) {
 
 var versions = {
 		"git": "git",
-		"3.1": "3.1.0",
+		"3.1": "3.1.1",
 		"3.0": "3.0.0",
 		"2.2": "2.2.4",
 		"2.1": "2.1.4",
@@ -51,12 +51,6 @@ function submit( commit, runs, configFile, extra, done ) {
 		commitUrl = "https://github.com/jquery/jquery-ui/commit/" + commit;
 
 	if ( extra ) {
-
-		// jQuery >= 2.0.0 don't support IE 8.
-		if ( extra.substring( 0, 6 ) !== "core 1" ) {
-			browserSets = "jquery-ui-future";
-		}
-
 		extra = " (" + extra + ")";
 	}
 
