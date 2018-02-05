@@ -28,6 +28,20 @@
 			"../version",
 			"../widget"
 		], factory );
+	} else if (typeof exports === "object" && typeof module === "object") {
+        
+        // CommonJS
+		module.exports = function ($) {
+            var factories = {
+                mouse: require("./mouse"),
+                "disable-selection": require("../disable-selection"),
+                plugin: require("../plugin")
+            };
+            for (var f in factories) {
+                factories[f]($);
+            }
+            return factory($);
+        };
 	} else {
 
 		// Browser globals
