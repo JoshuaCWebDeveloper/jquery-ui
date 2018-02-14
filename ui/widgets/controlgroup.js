@@ -24,6 +24,14 @@
 			"jquery",
 			"../widget"
 		], factory );
+	} else if (typeof exports === "object" && typeof module === "object") {
+        
+        // CommonJS
+		module.exports = function ($) {
+            var wf = require("../widget");
+            wf($);
+            return factory($);
+        };
 	} else {
 
 		// Browser globals

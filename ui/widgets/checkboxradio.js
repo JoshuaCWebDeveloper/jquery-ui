@@ -28,6 +28,20 @@
 			"../labels",
 			"../widget"
 		], factory );
+	} else if (typeof exports === "object" && typeof module === "object") {
+        
+        // CommonJS
+		module.exports = function ($) {
+            var factories = {
+                labels: require("../labels"),
+                "form-reset-mixin": require("../form-reset-mixin"),
+                widget: require("../widget")
+            };
+            for (var f in factories) {
+                factories[f]($);
+            }
+            return factory($);
+        };
 	} else {
 
 		// Browser globals

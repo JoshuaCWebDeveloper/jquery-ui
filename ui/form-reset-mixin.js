@@ -21,6 +21,14 @@
 			"./form",
 			"./version"
 		], factory );
+	} else if (typeof exports === "object" && typeof module === "object") {
+        
+        // CommonJS
+		module.exports = function ($) {
+            var ff = require("./form");
+            ff($);
+            return factory($);
+        };
 	} else {
 
 		// Browser globals

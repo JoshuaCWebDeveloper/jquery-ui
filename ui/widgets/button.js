@@ -31,6 +31,20 @@
 			"../keycode",
 			"../widget"
 		], factory );
+	} else if (typeof exports === "object" && typeof module === "object") {
+        
+        // CommonJS
+		module.exports = function ($) {
+            var factories = {
+                controlgroup: require("./controlgroup"),
+                checkboxradio: require("./checkboxradio"),
+                keycode: require("../keycode")
+            };
+            for (var f in factories) {
+                factories[f]($);
+            }
+            return factory($);
+        };
 	} else {
 
 		// Browser globals

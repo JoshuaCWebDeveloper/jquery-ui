@@ -17,6 +17,14 @@
 
 		// AMD. Register as an anonymous module.
 		define( [ "jquery", "./version", "./escape-selector" ], factory );
+	} else if (typeof exports === "object" && typeof module === "object") {
+        
+        // CommonJS
+		module.exports = function ($) {
+            var ef = require("./escape-selector");
+            ef($);
+            return factory($);
+        };
 	} else {
 
 		// Browser globals
